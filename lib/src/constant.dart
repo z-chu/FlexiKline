@@ -93,6 +93,9 @@ enum Timespan {
 enum TimeBar {
   // time(1000, 'time'), // 暂不支持; v0.8.0支持
   s1(1000, '1s', 1, Timespan.second),
+  s5(5 * 1000, '5s', 5, Timespan.second),
+  s15(15 * 1000, '15s', 15, Timespan.second),
+  s30(30 * 1000, '30s', 30, Timespan.second),
   m1(Duration.millisecondsPerMinute, '1m', 1, Timespan.minute),
   m3(3 * Duration.millisecondsPerMinute, '3m', 3, Timespan.minute),
   m5(5 * Duration.millisecondsPerMinute, '5m', 5, Timespan.minute),
