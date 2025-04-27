@@ -17,6 +17,7 @@ library;
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:decimal/decimal.dart';
 import 'package:flexi_formatter/flexi_formatter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';

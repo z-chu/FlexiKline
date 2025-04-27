@@ -409,29 +409,29 @@ mixin CrossBinding on KlineBindingBase, SettingBinding implements ICross {
           value = model.formatDateTime(timeBar);
           break;
         case TooltipLabel.open:
-          value = formatPrice(model.o, precision: p);
+          value = safeFormatPrice(model.o, precision: p);
           break;
         case TooltipLabel.high:
-          value = formatPrice(model.h, precision: p);
+          value = safeFormatPrice(model.h, precision: p);
           break;
         case TooltipLabel.low:
-          value = formatPrice(model.l, precision: p);
+          value = safeFormatPrice(model.l, precision: p);
           break;
         case TooltipLabel.close:
-          value = formatPrice(model.c, precision: p);
+          value = safeFormatPrice(model.c, precision: p);
           break;
         case TooltipLabel.chg:
-          value = formatPrice(model.change, precision: p);
+          value = safeFormatPrice(model.change, precision: p);
           break;
         case TooltipLabel.chgRate:
-          value = formatPercentage(model.changeRate.d);
+          value = safeFormatPercentage(model.changeRate);
           riseOrFall = model.change.signum;
           break;
         case TooltipLabel.range:
           if (pre != null) {
-            value = formatPercentage(model.rangeRate(pre).d);
+            value = safeFormatPercentage(model.rangeRate(pre));
           } else {
-            value = formatPrice(model.range, precision: p);
+            value = safeFormatPrice(model.range, precision: p);
           }
           break;
         case TooltipLabel.amount:
@@ -452,5 +452,19 @@ mixin CrossBinding on KlineBindingBase, SettingBinding implements ICross {
       }
     });
     return list;
+  }
+
+  String safeFormatPrice(Decimal value, {required int precision}) {
+    if (value == Decimal.zero) {
+      return '0';
+    }
+    return formatPrice(value, precision: precision);
+  }
+
+  String safeFormatPercentage(double value) {
+    if (value == 0) {
+      return '0%';
+    }
+    return formatPercentage(value.d);
   }
 }
