@@ -132,6 +132,10 @@ mixin ChartBinding
         reset: _reset,
       );
       mainPaintObject.doPaintChart(canvas, size);
+    } catch (e, stackTrace) {
+      if (isDebug) {
+        debugPrint('paintChart error:$e , stackTrace: $stackTrace');
+      }
     } finally {
       /// 恢复画布状态
       canvas.restore();

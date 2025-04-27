@@ -539,6 +539,8 @@ class DrawPainter extends CustomPainter {
       canvas.clipRect(controller.mainRect);
 
       controller.paintDraw(canvas, size);
+    } catch (e, stackTrace) {
+      debugPrint('paintDraw stackTrace: $stackTrace');
     } finally {
       canvas.restore();
     }
@@ -566,6 +568,8 @@ class CrossPainter extends CustomPainter {
       canvas.clipRect(controller.canvasRect);
 
       controller.paintCross(canvas, size);
+    } catch (e, stackTrace) {
+      debugPrint('paintCross stackTrace: $stackTrace');
     } finally {
       canvas.restore();
     }
